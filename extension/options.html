@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QuickCmd Vault Pro – Gestion</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <main class="layout">
+    <section class="panel form-panel">
+      <div class="panel-header">
+        <div>
+          <h1>QuickCmd Vault Pro</h1>
+          <p>Version V2 avec catégories, favoris et commandes Windows / PowerShell.</p>
+        </div>
+      </div>
+
+      <form id="commandForm" class="command-form">
+        <input type="hidden" id="commandId" />
+        <label>Titre
+          <input id="title" required placeholder="Ex. Build React prod" />
+        </label>
+        <label>Projet
+          <input id="project" required placeholder="Ex. BRIX / ZAPI / Vox-Cloud" />
+        </label>
+        <label>Catégorie
+          <input id="category" required placeholder="Ex. Git / npm / Firebase / PowerShell" />
+        </label>
+        <label>Tags
+          <input id="tags" placeholder="git, npm, deploy, firebase" />
+        </label>
+        <label class="checkbox-line">
+          <input id="favorite" type="checkbox" />
+          Marquer comme favori
+        </label>
+        <label>Commande
+          <textarea id="command" required rows="6" placeholder="npm run build"></textarea>
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="primary">Enregistrer</button>
+          <button type="button" id="resetFormButton" class="secondary">Nouveau</button>
+        </div>
+      </form>
+
+      <section class="tools">
+        <button id="seedButton" class="secondary">Réinitialiser base par défaut</button>
+        <button id="exportButton" class="secondary">Exporter JSON</button>
+        <label class="import-label">
+          Importer JSON
+          <input id="importFile" type="file" accept="application/json" />
+        </label>
+      </section>
+    </section>
+
+    <section class="panel list-panel">
+      <div class="list-toolbar">
+        <input id="searchInput" type="search" placeholder="Rechercher..." />
+        <select id="projectFilter"><option value="">Tous les projets</option></select>
+        <select id="categoryFilter"><option value="">Toutes catégories</option></select>
+      </div>
+
+      <label class="checkbox-line inline-filter">
+        <input id="favoritesOnly" type="checkbox" />
+        Afficher seulement les favoris
+      </label>
+
+      <div id="stats" class="stats"></div>
+      <div id="commandList" class="command-list"></div>
+      <div id="emptyState" class="empty hidden">Aucune commande enregistrée.</div>
+    </section>
+
+    <template id="rowTemplate">
+      <article class="row-card">
+        <div class="row-main">
+          <div class="row-meta">
+            <div class="badges">
+              <span class="project"></span>
+              <span class="category"></span>
+              <span class="favorite hidden">★ Favori</span>
+            </div>
+            <h2 class="title"></h2>
+            <p class="tags"></p>
+          </div>
+          <div class="row-actions">
+            <button class="fav-btn">☆</button>
+            <button class="copy-btn">Copier</button>
+            <button class="edit-btn">Éditer</button>
+            <button class="delete-btn danger">Supprimer</button>
+          </div>
+        </div>
+        <pre class="command"></pre>
+      </article>
+    </template>
+
+    <div id="toast" class="toast hidden"></div>
+  </main>
+
+  <script src="storage.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "QuickCmd Vault Pro",
+  "version": "4.0.0",
+  "description": "Synchronisation cloud via Chrome Sync, avec migration des données locales.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_title": "QuickCmd Vault Pro",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}
